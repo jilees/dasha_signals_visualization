@@ -3,7 +3,7 @@ import { parseCSV } from '../lib/csvParser'
 import { aggregateRows } from '../lib/aggregator'
 import type { DashboardData, SignalData } from '../types'
 
-const DEFAULT_CSV = '/data/dasha.marketplace-feedbacks.csv'
+const DEFAULT_CSV = `${import.meta.env.BASE_URL}data/dasha.marketplace-feedbacks.csv`
 
 interface DashboardStore {
   data: DashboardData | null

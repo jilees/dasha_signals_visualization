@@ -12,14 +12,12 @@ export function ReviewDrawer({ stage }: ReviewDrawerProps) {
   const { activeSignal } = useDashboardStore()
   const [showAll, setShowAll] = useState(false)
 
-  // Reset showAll when signal changes
   useEffect(() => {
     setShowAll(false)
   }, [activeSignal?.signal])
 
   const isOpen = activeSignal !== null
 
-  // Collect all unique reviews for the stage
   const allStageReviews = (() => {
     if (!showAll) return []
     const seen = new Set<string>()
@@ -39,8 +37,8 @@ export function ReviewDrawer({ stage }: ReviewDrawerProps) {
 
   return (
     <div
-      className={`flex-shrink-0 border-l border-gray-200 bg-gray-50 flex flex-col transition-all duration-300 overflow-hidden ${
-        isOpen ? 'w-[460px]' : 'w-0'
+      className={`flex-shrink-0 border-l border-gray-100 bg-gray-50 flex flex-col transition-all duration-300 overflow-hidden ${
+        isOpen ? 'w-[440px]' : 'w-0'
       }`}
     >
       {isOpen && activeSignal && (
@@ -51,7 +49,7 @@ export function ReviewDrawer({ stage }: ReviewDrawerProps) {
             totalReviews={allStageReviews.length || stage.uniqueReviews}
             onToggleShowAll={() => setShowAll((v) => !v)}
           />
-          <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-3">
+          <div className="flex-1 overflow-y-auto p-3 flex flex-col gap-2">
             {reviews.length === 0 ? (
               <p className="text-sm text-gray-400 text-center py-8">Нет отзывов</p>
             ) : (

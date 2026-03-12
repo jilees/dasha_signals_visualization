@@ -12,28 +12,26 @@ export function ReviewCard({ review }: ReviewCardProps) {
   if (!hasPros && !hasCons && !hasComment) return null
 
   return (
-    <div className="rounded-lg border border-gray-100 bg-white p-4 flex flex-col gap-2.5">
-      {hasPros && (
-        <div>
-          <span className="text-xs font-semibold text-green-600 uppercase tracking-wide">Плюсы</span>
-          <p className="text-sm text-gray-700 mt-1 leading-relaxed">{review.pros}</p>
-        </div>
-      )}
-      {hasCons && (
-        <div>
-          <span className="text-xs font-semibold text-red-500 uppercase tracking-wide">Минусы</span>
-          <p className="text-sm text-gray-700 mt-1 leading-relaxed">{review.cons}</p>
-        </div>
-      )}
+    <div className="rounded-xl border border-gray-100 bg-white p-4 flex flex-col gap-3 shadow-sm">
       {hasComment && (
-        <div>
-          <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Отзыв</span>
-          <p className="text-sm text-gray-700 mt-1 leading-relaxed">{review.comment}</p>
+        <p className="text-sm text-gray-700 leading-relaxed">{review.comment}</p>
+      )}
+      {(hasPros || hasCons) && (
+        <div className="flex flex-col gap-2 pt-2 border-t border-gray-50">
+          {hasPros && (
+            <div className="flex gap-2">
+              <span className="flex-shrink-0 mt-0.5 w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5" />
+              <p className="text-xs text-gray-500 leading-relaxed">{review.pros}</p>
+            </div>
+          )}
+          {hasCons && (
+            <div className="flex gap-2">
+              <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-400 mt-1.5" />
+              <p className="text-xs text-gray-500 leading-relaxed">{review.cons}</p>
+            </div>
+          )}
         </div>
       )}
-      <div className="text-right">
-        <span className="text-[10px] text-gray-300">#{review.id}</span>
-      </div>
     </div>
   )
 }
